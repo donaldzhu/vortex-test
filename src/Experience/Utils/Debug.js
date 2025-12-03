@@ -3,11 +3,6 @@ import * as Helpers from '@experience/Utils/Helpers.js'
 import Stats from 'stats.js'
 import { Pane } from 'tweakpane';
 import Experience from "@experience/Experience.js";
-import Sizes from "./Sizes.js";
-
-import {
-    output, mrt
-} from 'three/tsl'
 
 export default class Debug {
 
@@ -18,7 +13,6 @@ export default class Debug {
     }
 
     experience = Experience.getInstance()
-    sizes = Sizes.getInstance()
 
     constructor() {
         // Singleton

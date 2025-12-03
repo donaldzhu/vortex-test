@@ -1,42 +1,26 @@
 import * as THREE from 'three/webgpu'
-import * as Helpers from '@experience/Utils/Helpers.js'
-import Experience from '@experience/Experience.js'
 import Debug from '@experience/Utils/Debug.js'
 import State from "@experience/State.js";
 import Sizes from "./Sizes.js";
 import Materials from "@experience/Materials/Materials.js";
+import Experience from "@experience/Experience.js";
+import * as Helpers from "@experience/Utils/Helpers.js";
 import gsap from "gsap";
 
 import {
-    luminance,
-    cos,
     float,
-    min,
-    time,
-    atan,
     uniform,
     pass,
     mrt,
     output,
     emissive,
-    diffuseColor,
-    PI,
-    PI2,
-    color,
-    positionLocal,
-    oneMinus,
-    sin,
     texture,
     Fn,
     uv,
-    spherizeUV,
     screenUV,
-    screenCoordinate,
     vec2,
-    vec3,
     vec4,
     distance,
-    transmission
 } from 'three/tsl';
 import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 import { transition } from 'three/addons/tsl/display/TransitionNode.js';
