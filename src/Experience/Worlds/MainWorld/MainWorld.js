@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import Experience from '@experience/Experience.js'
-import DebugHelpers from "../Objects/DebugHelpers.js";
 import Time from "@experience/Utils/Time.js";
 import EventEmitter from '@experience/Utils/EventEmitter.js';
 
@@ -32,7 +31,6 @@ export default class MainWorld extends EventEmitter{
         this.sphere = new Sphere( { world: this } )
 
         this.environment = new Environment( { world: this } )
-        //this.debugHelpers = new DebugHelpers( { world: this } )
 
         this.scene.add( this.camera.instance )
     }
@@ -61,7 +59,6 @@ export default class MainWorld extends EventEmitter{
         if ( !this.enabled )
             return
 
-        this.debugHelpers?.update( deltaTime )
         this.example?.update( deltaTime )
         this.sphere?.update( deltaTime )
         this.galaxy?.update( deltaTime )

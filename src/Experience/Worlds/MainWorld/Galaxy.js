@@ -1,5 +1,4 @@
 import * as THREE from 'three/webgpu'
-import * as Helpers from '@experience/Utils/Helpers.js'
 import Model from '@experience/Worlds/Abstracts/Model.js'
 import Experience from '@experience/Experience.js'
 import Debug from '@experience/Utils/Debug.js'
