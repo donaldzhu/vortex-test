@@ -16,7 +16,7 @@ export default class Ui extends EventEmitter {
     constructor() {
 
         // Singleton
-        if ( Ui._instance ) {
+        if (Ui._instance) {
             return Ui._instance
         }
 
@@ -28,15 +28,15 @@ export default class Ui extends EventEmitter {
     }
 
     init() {
-        this.preloader = document.getElementById( "preloader" )
-        this.playButton = document.getElementById( "play-button" )
+        this.preloader = document.getElementById("preloader")
+        this.playButton = document.getElementById("play-button")
     }
 
     hardRemovePreloader() {
-        this.playButton.classList.replace( "fade-in", "fade-out" );
-        this.preloader.classList.add( "preloaded" );
-        this.preloader.remove();
-        this.playButton.remove();
+        this.playButton.classList.replace("fade-in", "fade-out")
+        this.preloader.classList.add("preloaded")
+        this.preloader.remove()
+        this.playButton.remove()
     }
 
 

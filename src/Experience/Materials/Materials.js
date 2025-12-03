@@ -1,7 +1,6 @@
-import * as THREE from 'three/webgpu'
 import Experience from '@experience/Experience.js'
+import State from "@experience/State.js"
 import Debug from '@experience/Utils/Debug.js'
-import State from "@experience/State.js";
 
 export default class Materials {
     static _instance = null
@@ -11,7 +10,7 @@ export default class Materials {
     }
 
     constructor() {
-        if ( Materials._instance ) {
+        if (Materials._instance) {
             return Materials._instance
         }
         Materials._instance = this

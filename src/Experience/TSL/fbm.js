@@ -1,4 +1,4 @@
-import { vec4, mod, Fn, mul, sub, vec3, vec2, dot, floor, step, min, max, float, abs, int, If, Loop } from 'three/tsl'
+import { abs, dot, float, floor, Fn, If, int, Loop, max, min, mod, mul, step, sub, vec2, vec3, vec4 } from 'three/tsl'
 
 const permute = Fn(([x_immutable]) => {
 
@@ -124,4 +124,5 @@ fbm3d.setLayout({
 	]
 })
 
-export { permute, taylorInvSqrt, fbm, fbm3d }
+export { fbm, fbm3d, permute, taylorInvSqrt }
+

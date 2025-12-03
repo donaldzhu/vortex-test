@@ -1,25 +1,33 @@
-import * as THREE from 'three/webgpu'
-import Model from '@experience/Worlds/Abstracts/Model.js'
 import Experience from '@experience/Experience.js'
-import Debug from '@experience/Utils/Debug.js'
 import State from "@experience/State.js"
+import Debug from '@experience/Utils/Debug.js'
+import * as THREE from 'three/webgpu'
 
 import {
-    sin, positionLocal, time, vec2, vec3, vec4, uv, uniform, color, fog, rangeFogFactor,
-    texture, If, min, range, instanceIndex, timerDelta, step, timerGlobal,
-    mix, max, uint, cond, varying, varyingProperty, Fn, struct, output, emissive, diffuseColor, PI, PI2,
-    oneMinus, cos, atan, float, pass, mrt, assign, normalize, mul, log2, length, pow, smoothstep,
-    screenUV, distance, instancedArray, instancedBufferAttribute, attribute, attributeArray, pointUV,
-    select, equals
+    float,
+    Fn,
+    If,
+    instancedBufferAttribute,
+    length,
+    log2,
+    mix,
+    mul,
+    normalize,
+    positionLocal,
+    pow,
+    time,
+    uniform,
+    uv,
+    varying,
+    vec3, vec4
 } from 'three/tsl'
 
-import * as tsl from 'three/tsl'
 
 
 import { fbm3d } from '@experience/TSL/fbm.js'
-import { rotateZ, emission, facture } from '@experience/Utils/tsl-utils.js'
+import { emission, facture, rotateZ } from '@experience/Utils/tsl-utils.js'
 
-export default class Galaxy extends Model {
+export default class Galaxy {
     experience = Experience.getInstance()
     debug = Debug.getInstance()
     state = State.getInstance()
@@ -52,7 +60,6 @@ export default class Galaxy extends Model {
     }
 
     constructor(parameters = {}) {
-        super()
 
         this.world = parameters.world
         this.camera = this.world.camera.instance

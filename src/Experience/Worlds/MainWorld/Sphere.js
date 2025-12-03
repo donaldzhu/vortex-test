@@ -1,14 +1,13 @@
 import Experience from '@experience/Experience.js'
 import State from "@experience/State.js"
 import Debug from '@experience/Utils/Debug.js'
-import Model from '@experience/Worlds/Abstracts/Model.js'
 import * as THREE from 'three/webgpu'
 
 import {
     uniform
 } from 'three/tsl'
 
-export default class Sphere extends Model {
+export default class Sphere {
     experience = Experience.getInstance()
     debug = Debug.getInstance()
     state = State.getInstance()
@@ -42,8 +41,6 @@ export default class Sphere extends Model {
     }
 
     constructor(parameters = {}) {
-        super()
-
         this.world = parameters.world
         this.camera = this.world.camera.instance
         this.scene = this.world.scene

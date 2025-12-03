@@ -1,11 +1,10 @@
 import * as THREE from 'three/webgpu'
-import Model from '@experience/World/Abstracts/Model.js'
 import Experience from '@experience/Experience.js'
 import Debug from '@experience/Utils/Debug.js'
-import State from "@experience/State.js";
-import FBO from "@experience/Utils/FBO.js";
+import State from "@experience/State.js"
+import FBO from "@experience/Utils/FBO.js"
 
-export default class SceneDepth extends Model {
+export default class SceneDepth {
 	experience = Experience.getInstance()
 	debug = Debug.getInstance()
 	state = State.getInstance()
@@ -20,8 +19,6 @@ export default class SceneDepth extends Model {
 	container = new THREE.Group();
 
 	constructor() {
-		super()
-
 		this.setScene()
 		this.setDebug()
 	}
@@ -29,43 +26,43 @@ export default class SceneDepth extends Model {
 	setScene() {
 		this.sceneDepth = new THREE.Scene()
 
-		this.sceneDepth.add( this.container )
+		this.sceneDepth.add(this.container)
 		this.setDepthBuffer()
 	}
 
 	setDepthBuffer() {
-		const dpr = this.renderer.getPixelRatio();
-		const depthRenderTarget = this.fbo.createRenderTarget( this.sizes.width * this.sizes.pixelRatio, this.sizes.height * this.sizes.pixelRatio, false, false, 0 );
+		const dpr = this.renderer.getPixelRatio()
+		const depthRenderTarget = this.fbo.createRenderTarget(this.sizes.width * this.sizes.pixelRatio, this.sizes.height * this.sizes.pixelRatio, false, false, 0)
 
-		depthRenderTarget.depthTexture = new THREE.DepthTexture();
-		depthRenderTarget.depthTexture.format = THREE.DepthFormat;
-		depthRenderTarget.depthTexture.type = THREE.UnsignedShortType;
+		depthRenderTarget.depthTexture = new THREE.DepthTexture()
+		depthRenderTarget.depthTexture.format = THREE.DepthFormat
+		depthRenderTarget.depthTexture.type = THREE.UnsignedShortType
 
-		this.depthRenderTarget = depthRenderTarget;
+		this.depthRenderTarget = depthRenderTarget
 	}
 
 	resize() {
-		this.depthRenderTarget.setSize( this.sizes.width * this.sizes.pixelRatio, this.sizes.height * this.sizes.pixelRatio )
+		this.depthRenderTarget.setSize(this.sizes.width * this.sizes.pixelRatio, this.sizes.height * this.sizes.pixelRatio)
 		this.depthRenderTarget.depthTexture.image.width = this.sizes.width * this.sizes.pixelRatio
 		this.depthRenderTarget.depthTexture.image.height = this.sizes.height * this.sizes.pixelRatio
 
-		this.postUpdate( this.time.delta ) // fix flickering background objects
+		this.postUpdate(this.time.delta) // fix flickering background objects
 	}
 	setDebug() {
-		if ( !this.debug.active ) return
+		if (!this.debug.active) return
 
-		this.debug.createDebugTexture( this.depthRenderTarget.texture )
+		this.debug.createDebugTexture(this.depthRenderTarget.texture)
 	}
 
 
-	postUpdate( deltaTime ) {
+	postUpdate(deltaTime) {
 
 		this.renderer.autoClear = true
-		this.renderer.setRenderTarget( this.depthRenderTarget );
-		this.renderer.render( this.sceneDepth, this.camera )
-		this.renderer.setRenderTarget( null );
+		this.renderer.setRenderTarget(this.depthRenderTarget)
+		this.renderer.render(this.sceneDepth, this.camera)
+		this.renderer.setRenderTarget(null)
 
-		this.postProcess.clearPass.uniforms.u_DepthTexture.value = this.depthRenderTarget.texture;
+		this.postProcess.clearPass.uniforms.u_DepthTexture.value = this.depthRenderTarget.texture
 		// this.postProcess.clearPass.uniforms.cameraNear.value = this.camera.near;
 		// this.postProcess.clearPass.uniforms.cameraFar.value = this.camera.far;
 
